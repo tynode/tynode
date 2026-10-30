@@ -1,7 +1,25 @@
 name: ci
 on: [push, pull_request]
 jobs:
-  test:
+  console:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r apps/console/requirements.txt
+      - run: python -m compileall -q apps/console packages/sdk-python
+      - name: Engine smoke test
+        working-directory: apps/console
+        env:
+          TYNODE_DATA_DIR: ${{ runner.temp }}/tynode
+        run: |
+          mkdir -p "$TYNODE_DATA_DIR"
+          python -m uvicorn server:app --port 8799 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8799/health && break; sleep 1; done
+          curl -sf http://127.0.0.1:8799/health
+  legacy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -11,5 +29,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
-      - run: pip install -e "apps/api[dev]" -e packages/sdk-python
-      - run: pytest apps/api packages/sdk-python -q
+      - run: pip install -e "legacy/api[dev]" -e legacy/sdk-python
+      - run: pytest legacy/api legacy/sdk-python -q

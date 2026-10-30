@@ -1,18 +1,15 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tynode"
+name = "tynode-sdk"
 version = "0.1.0"
-description = "Trace your AI agents in 2 lines. Local-first."
+description = "Trace your AI agents with Tynode. Zero dependencies."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = { text = "MIT" }
 dependencies = []
 
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
+[tool.setuptools]
+py-modules = ["tynode_sdk"]

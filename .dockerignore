@@ -1,0 +1,10 @@
+.git
+.venv
+**/node_modules
+**/__pycache__
+apps/desktop
+legacy
+tools
+*.bak
+*.bak-*
+*.db
