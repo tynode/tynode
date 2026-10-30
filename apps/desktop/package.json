@@ -1,6 +1,6 @@
 {
     "name":  "tynode-desktop",
-    "version":  "0.1.1",
+    "version":  "0.1.2",
     "private":  true,
     "description":  "Tynode desktop app",
     "main":  "main.js",
@@ -28,6 +28,10 @@
                                          {
                                              "to":  "engine",
                                              "from":  "engine-bundle"
+                                         },
+                                         {
+                                             "from":  "supabase.public.json",
+                                             "to":  "supabase.public.json"
                                          }
                                      ],
                   "win":  {

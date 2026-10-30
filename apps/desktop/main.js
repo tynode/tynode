@@ -33,7 +33,12 @@ function probe() {
   });
 }
 
-function pythonCandidates() {
+function readPublicCfg() {
+  try {
+    const j = JSON.parse(require('fs').readFileSync(path.join(process.resourcesPath, 'supabase.public.json'), 'utf8'));
+    return { SUPABASE_URL: j.url, SUPABASE_ANON_KEY: j.anon };
+  } catch (e) { return {}; }
+}function pythonCandidates() {
   if (app.isPackaged) {
     try { require('fs').mkdirSync(DATA, { recursive: true }); } catch (e) {}
     return [{ cmd: path.join(process.resourcesPath, 'engine', 'tynode-engine.exe'), pre: [] }];
@@ -58,7 +63,7 @@ async function ensureServer() {
     let out = 'ignore';
     try { out = fs.openSync(LOG, 'a'); fs.writeSync(out, '\n--- trying: ' + c.cmd + ' ---\n'); } catch (e) {}
     const proc = spawn(c.cmd, c.pre.concat(['-m', 'uvicorn', 'server:app', '--port', String(PORT), '--log-level', 'warning']),
-      { cwd: consoleDir, windowsHide: true, env: Object.assign({}, process.env, { TYNODE_DATA_DIR: DATA }), stdio: ['ignore', out, out] });
+      { cwd: consoleDir, windowsHide: true, env: Object.assign({}, process.env, Object.assign({ TYNODE_DATA_DIR: DATA }, readPublicCfg())), stdio: ['ignore', out, out] });
     proc.on('exit', () => { dead = true; });
     proc.on('error', () => { dead = true; });
     server = proc;

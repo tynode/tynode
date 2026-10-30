@@ -27,3 +27,4 @@ apps/desktop/engine-bundle/
 apps/desktop/dist/
 apps/desktop/*.bak-*
 apps/desktop/engine.log
+apps/desktop/supabase.public.json
