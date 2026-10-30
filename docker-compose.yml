@@ -1,0 +1,21 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "7420:7420"
+    environment:
+      TYNODE_DATABASE_URL: postgresql+psycopg2://tynode:tynode@db:5432/tynode
+    depends_on:
+      - db
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: tynode
+      POSTGRES_PASSWORD: tynode
+      POSTGRES_DB: tynode
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

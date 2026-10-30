@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Tynode</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font:13px "SF Pro Text","Segoe UI",system-ui,sans-serif;color:#f2f1fa;-webkit-font-smoothing:antialiased;user-select:none;
+background:radial-gradient(900px 600px at 10% -10%,rgba(91,75,255,.35),transparent 62%),radial-gradient(700px 500px at 100% 100%,rgba(56,120,255,.16),transparent 60%),#0e0b20;
+display:flex;align-items:center;justify-content:center;-webkit-app-region:drag}
+.box{text-align:center;animation:in .6s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.logo{width:92px;height:92px;border-radius:22%;margin:0 auto 18px;overflow:hidden;box-shadow:0 14px 44px rgba(74,53,240,.5);animation:breathe 2.4s ease-in-out infinite;background:#3a2bd0}
+@keyframes breathe{50%{transform:scale(1.04)}}
+.logo img,.logo svg{width:100%;height:100%;display:block;object-fit:cover}
+h1{font:700 30px "SF Pro Display","Segoe UI",sans-serif;letter-spacing:-.02em}
+p{color:#a09cc0;margin:4px 0 26px}
+ul{list-style:none;display:inline-block;text-align:left}
+li{display:flex;align-items:center;gap:10px;padding:5px 0;color:#6c6890;transition:color .3s}
+li i{width:16px;height:16px;border-radius:50%;border:1.5px solid #4a4670;flex:none;transition:all .3s}
+li.on{color:#f2f1fa}
+li.on i{border-color:rgba(255,255,255,.22);border-top-color:#7c6cff;animation:spin .8s linear infinite}
+li.done{color:#a09cc0}
+li.done i{background:#34d399;border-color:#34d399;position:relative}
+li.done i::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid #fff;border-width:0 1.6px 1.6px 0;transform:rotate(45deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+#err{display:none;max-width:360px;color:#fb7185;line-height:1.5}
+#err small{display:block;color:#a09cc0;margin-top:8px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></head><body>
+<div class="box">
+ <div class="logo" id="lg"><img src="../console/static/logo.png" alt="" onerror="fb()"></div>
+ <h1>Tynode</h1><p>Agent observability</p>
+ <ul id="steps"></ul>
+ <div id="err">Tynode could not start its engine.<small>Close other programs that use port 8799, then open Tynode again. Details: apps\desktop\engine.log</small></div>
+</div>
+<script>
+function fb(){document.getElementById("lg").innerHTML='<svg viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a1bb8"/><stop offset="1" stop-color="#5b4bff"/></linearGradient></defs><rect width="64" height="64" fill="url(#g)"/><path d="M18 22h28M33 22v22" stroke="#fff" stroke-opacity=".88" stroke-width="8" stroke-linecap="round" fill="none"/></svg>'}
+const steps=["Starting engine","Opening local database","Preparing your workspace"];
+const ul=document.getElementById("steps");
+ul.innerHTML=steps.map((s,i)=>'<li id="s'+i+'"><i></i><span>'+s+'</span></li>').join("");
+if(location.search.indexOf("error")>=0){document.getElementById("err").style.display="block";ul.style.display="none"}
+else{let i=0;(function tick(){if(i>0)document.getElementById("s"+(i-1)).className="done";
+ if(i<steps.length){document.getElementById("s"+i).className="on";i++;setTimeout(tick,550)}})()}
+</script></body></html>
