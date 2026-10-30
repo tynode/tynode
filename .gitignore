@@ -17,3 +17,5 @@ apps/console/.env
 *.sqlite3
 engine.log
 tools/archive/
+apps/console/vendor/apple/
+*.dmg
