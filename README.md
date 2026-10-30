@@ -98,3 +98,8 @@ pip install ./packages/sdk-python
 ```
 
 A runnable example lives in [`apps/console/sdk_example.py`](apps/console/sdk_example.py).
+
+## Download & Feedback
+
+- Download the latest version: https://github.com/tynode/tynode/releases/latest
+- Share feedback or report a bug: https://github.com/tynode/tynode/issues/new/choose
