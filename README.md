@@ -87,6 +87,9 @@ Only your email address and the one-time code go through Supabase Auth.
 
 This is an early preview and your feedback decides what comes next. Open an issue for bugs and requests (templates included). Say what you were trying to trace, what you expected and what happened. Please remove prompts, keys and email addresses from anything you paste.
 
+- Download the latest version: https://github.com/tynode/tynode/releases/latest
+- Share feedback or report a bug: https://github.com/tynode/tynode/issues/new/choose
+
 MIT licensed.
 
 ## Python SDK
@@ -98,8 +101,3 @@ pip install ./packages/sdk-python
 ```
 
 A runnable example lives in [`apps/console/sdk_example.py`](apps/console/sdk_example.py).
-
-## Download & Feedback
-
-- Download the latest version: https://github.com/tynode/tynode/releases/latest
-- Share feedback or report a bug: https://github.com/tynode/tynode/issues/new/choose
