@@ -748,7 +748,7 @@ document.addEventListener("click",async e=>{const t=e.target;
   if(id=="w_close"){closeWiz();if(view=="agents")agentsPage(false);load(true);return}
   if(id=="w_add"){const txt=($("#w_list").value||"").trim();if(!txt){WZ.msg="Enter at least one agent name.";WZ.ok=false;wizDraw();return}
    const r=await post("/v1/tn/agents/bulk",{text:txt});await loadPlan();WZ.list="";WZ.msg="Added "+r.added+" agent"+(r.added==1?"":"s")+"."+(PLAN&&PLAN.plan=="free"&&PLAN.usage.agents>=PLAN.limits.agents?" Free plan limit reached ("+PLAN.limits.agents+" agents). Upgrade in Billing for more.":"");WZ.ok=true;wizDraw();load(true);return}
-  if(t.closest("#demo")){const dm=t.closest("#demo");dm.textContent="Loading...";await fetch("/v1/demo",{method:"POST",headers:{"x-api-key":AK()}});await load(true);return}
+  if(t.closest("#demo")){const dm=t.closest("#demo");dm.textContent="Loading...";const rr=await fetch("/v1/demo/rich",{method:"POST",headers:H()});if(!rr.ok){dm.textContent="Sample data failed ("+rr.status+")";return}await load(true);return}
   const a=t.closest("[data-act]");if(a){await doAct(a.dataset.act,a);return}
   const cx=t.closest("[data-closetab]");if(cx){closeTab(cx.dataset.closetab);return}
   const tb=t.closest("[data-tab]");if(tb){openTab(tb.dataset.tab);return}

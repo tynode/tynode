@@ -2,7 +2,7 @@
 
 Zero-dependency Python SDK for [Tynode](../../README.md).
 
-    pip install tynode-sdk        # or: pip install ./packages/sdk-python
+    pip install ./packages/sdk-python      # from a clone of the repo (PyPI release planned)
 
     from tynode_sdk import span
 

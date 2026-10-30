@@ -1,0 +1,26 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you see instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Python version, and how you run Tynode (desktop app, engine only, Docker)
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Remove prompts, keys and email addresses before pasting.
+      render: shell

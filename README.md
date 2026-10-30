@@ -31,6 +31,7 @@ Engine only (any OS), then open http://127.0.0.1:8799:
 Docker (data lives in the `tynode-data` volume, port bound to localhost only):
 
     docker compose up --build
+    docker compose exec tynode cat /data/api.key    # your ingest key (X-API-Key)
 
 ### 2. Connect your agent
 
@@ -64,7 +65,7 @@ table unless you pass `cost=`.
 ## Sign-in
 
 Email and password accounts are stored locally. Email-code sign-in is optional: set
-`SUPABASE_URL` and `SUPABASE_ANON_KEY` in `apps/console/.env` (see `.env.example`).
+`SUPABASE_URL` and `SUPABASE_ANON_KEY` in `apps/console/.env` (copy `apps/console/.env.example` to `apps/console/.env`).
 Only your email address and the one-time code go through Supabase Auth.
 
 ## Known limitations
@@ -81,5 +82,9 @@ Only your email address and the one-time code go through Supabase Auth.
     examples            runnable demos
     docker              Dockerfile for the engine
     legacy              first prototype, not maintained
+
+## Feedback
+
+This is an early preview and your feedback decides what comes next. Open an issue for bugs and requests (templates included). Say what you were trying to trace, what you expected and what happened. Please remove prompts, keys and email addresses from anything you paste.
 
 MIT licensed.
