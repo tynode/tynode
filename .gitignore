@@ -23,3 +23,7 @@ apps/console/vendor/apple/
 *.db
 *.db-shm
 *.db-wal
+apps/desktop/engine-bundle/
+apps/desktop/dist/
+apps/desktop/*.bak-*
+apps/desktop/engine.log

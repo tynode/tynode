@@ -1,13 +1,48 @@
 {
-  "name": "tynode-desktop",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Tynode desktop app",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "devDependencies": {
-    "electron": "^45.1.0"
-  }
+    "name":  "tynode-desktop",
+    "version":  "0.1.0",
+    "private":  true,
+    "description":  "Tynode desktop app",
+    "main":  "main.js",
+    "scripts":  {
+                    "start":  "electron .",
+                    "dist":  "electron-builder --win nsis"
+                },
+    "devDependencies":  {
+                            "electron":  "^45.1.0",
+                            "electron-builder":  "^26.18.0"
+                        },
+    "build":  {
+                  "appId":  "com.tynode.desktop",
+                  "productName":  "Tynode",
+                  "directories":  {
+                                      "output":  "dist"
+                                  },
+                  "files":  [
+                                "main.js",
+                                "preload.js",
+                                "splash.html",
+                                "package.json"
+                            ],
+                  "extraResources":  [
+                                         {
+                                             "to":  "engine",
+                                             "from":  "engine-bundle"
+                                         }
+                                     ],
+                  "win":  {
+                              "target":  [
+                                             "nsis"
+                                         ],
+                              "icon":  "build/icon.ico"
+                          },
+                  "nsis":  {
+                               "oneClick":  true,
+                               "perMachine":  false,
+                               "createDesktopShortcut":  true,
+                               "createStartMenuShortcut":  true,
+                               "runAfterFinish":  true
+                           },
+                  "artifactName":  "Tynode-Setup-${version}.exe"
+              }
 }

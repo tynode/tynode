@@ -1,5 +1,7 @@
 const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron');
-const { spawn, spawnSync } = require('child_process');
+const cp = require('child_process');
+const spawnSync = cp.spawnSync;
+const spawn = (cmd, args, opts) => cp.spawn(cmd, args, app.isPackaged ? Object.assign({}, opts, { cwd: DATA }) : opts);
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
@@ -32,6 +34,13 @@ function probe() {
 }
 
 function pythonCandidates() {
+  if (app.isPackaged) {
+    try { require('fs').mkdirSync(DATA, { recursive: true }); } catch (e) {}
+    return [{ cmd: path.join(process.resourcesPath, 'engine', 'tynode-engine.exe'), pre: [] }];
+  }
+  return pythonCandidatesDev();
+}
+function pythonCandidatesDev() {
   const list = [];
   const venvPy = path.join(__dirname, '..', '..', '.venv', 'Scripts', 'python.exe');
   if (fs.existsSync(venvPy)) list.push({ cmd: venvPy, pre: [] });
