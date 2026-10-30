@@ -19,3 +19,7 @@ engine.log
 tools/archive/
 apps/console/vendor/apple/
 *.dmg
+*.log
+*.db
+*.db-shm
+*.db-wal
