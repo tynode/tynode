@@ -88,3 +88,13 @@ Only your email address and the one-time code go through Supabase Auth.
 This is an early preview and your feedback decides what comes next. Open an issue for bugs and requests (templates included). Say what you were trying to trace, what you expected and what happened. Please remove prompts, keys and email addresses from anything you paste.
 
 MIT licensed.
+
+## Python SDK
+
+Instrument your own agents and send traces to the console:
+
+```bash
+pip install ./packages/sdk-python
+```
+
+A runnable example lives in [`apps/console/sdk_example.py`](apps/console/sdk_example.py).
