@@ -60,6 +60,10 @@ def auth(k):
     if k != KEY:
         raise HTTPException(401, "invalid api key")
 
+@app.get("/health")
+def health():
+    return {"status": "ok", "service": "tynode-engine"}
+
 @app.post("/v1/spans")
 def ingest(spans: list[Span], x_api_key: str = Header(default="")):
     auth(x_api_key)
