@@ -8,7 +8,7 @@ from pydantic import BaseModel
 PUBKEY_HEX = "b6398810822fb518d7f7679418496b31cb4e4b37a9bbddf6919fe5b52fdde94e"
 CHECKOUT_URL = os.environ.get("TYNODE_CHECKOUT_URL", "https://tynode.com/pricing")
 PLANS = {
-    "free": {"name": "Free", "agents": 3, "retention": 7, "features": ["livemap"]},
+    "free": {"name": "Free", "agents": 1000, "retention": 90, "features": ["livemap", "export", "alerts"]},
     "pro": {"name": "Pro", "agents": 1000, "retention": 90, "features": ["livemap", "export", "alerts"]},
 }
 
